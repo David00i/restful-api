@@ -28,14 +28,14 @@ describe('Express Route Test', function () {
 	});
 
 	it('login failed', async () => {
-		//TODO
+		//TODO when login is failed, it should return error message
 	})
 
 	it('register', async () => {
-		//TODO
+		//TODO when register is successful, it should return success message
 	});
 
 	it('register failed', async () => {
-		//TODO
+		//TODO when register is failed, it should return error message
 	})
 });
