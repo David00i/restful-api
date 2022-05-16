@@ -30,24 +30,32 @@ app.get('/hello', (req, res) => {
 
 app.post('/login', async (req, res) => {
 	console.log(req.body);
-
 	const user = await User.login(req.body.username, req.body.password);
-
-	// res.json({
-	// 	_id: '123456',
-	// 	name: 'test',
-	// 	age: 18,
-	// })
+	if (user.username == req.body.username ) {
+		res.json({
+			_id: '123456',
+			name: 'test',
+			email: ' ',
+			age: 18,
+		})
+	} else {
+		res.send("Login Failed");
+	}
 })
 
 app.post('/register', async (req, res) => {
 	console.log(req.body);
-
-	// res.json({
-	// 	_id: '123456',
-	// 	name: 'test',
-	// 	age: 18,
-	// })
+	const user = await User.register(req.body.username, req.body.password);
+	if (user.username == req.body.username ) {
+		res.json({
+			_id: '123456',
+			name: 'test',
+			email: ' ',
+			age: 18,
+		})
+	} else {
+		res.send("Register Failed");
+	}
 })
 
 app.listen(port, () => {
