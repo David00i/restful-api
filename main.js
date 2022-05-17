@@ -30,31 +30,34 @@ app.get('/hello', (req, res) => {
 
 app.post('/login', async (req, res) => {
 	console.log(req.body);
-	const user = await User.login(req.body.username, req.body.password);
-	if (user.username == req.body.username ) {
-		res.json({
-			_id: '123456',
-			name: 'test',
-			email: ' ',
-			age: 18,
+	if (user != null) {
+		console.log("What is send to test : " + user._id, user.username, user.email);
+		res.status(200).json({
+			_id: user._id,
+			name: user.username,
+			email: user.email,
+			//age: 18,
 		})
 	} else {
-		res.send("Login Failed");
+		console.log("Login Failed");
+		res.status(401).json( {error : "Login Failed"} );
 	}
 })
 
 app.post('/register', async (req, res) => {
 	console.log(req.body);
-	const user = await User.register(req.body.username, req.body.password);
-	if (user.username == req.body.username ) {
-		res.json({
-			_id: '123456',
-			name: 'test',
-			email: ' ',
-			age: 18,
+	const user = await User.register(req.body.username, req.body.password, req.body.email);
+	if (user != null ) {
+		console.log("Register Successfully");
+		res.status(200).json({
+			_id: user._id,
+			name: user.username,
+			email: user.email,
+			//age: 18,
 		})
 	} else {
-		res.send("Register Failed");
+		console.log("Register Failed");
+		res.status(401).json( {error : "Register Failed"} );
 	}
 })
 
