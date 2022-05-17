@@ -11,32 +11,43 @@ describe('Express Route Test', function () {
 			});
 	})
 
-	it('login successfully', async () => {
-		return request
-			.post('/login')
-			.send({username: 'user1', password: "123456" })
-			.expect('Content-Type', /json/)
-			.expect(200).then(response => {
-				expect(response.body).toEqual(
-					expect.objectContaining({
-						_id: expect.any(String),
-						name: expect.any(String),
-						age: expect.any(Number),
-					})
-				);
-			});
-	});
+	// it('login successfully', async () => {
+	// 	return request
+	// 		.post('/login')
+	// 		.send({username: 'tony', password: "123abc" })
+	// 		.expect('Content-Type', /json/)
+	// 		.expect(200)
+	// 		.then(res => {
+	// 			expect(res.body).toEqual({
+	// 				_id: expect.stringMatching("627880fc5e6031f92cc74100"),
+	// 				name: expect.stringMatching("tony"),
+	// 				email: expect.stringMatching("tony@gmail.com"),
+	// 				//age: expect.any(Number),
+	// 				})
+	// 		});
+	// });
 
-	it('login failed', async () => {
-		return request
-			.post('/login')
-			.send({username: 'wrong name', password: "123abc" })
-			.expect('Content-Type', /text/)
-			.expect(200)
-			.then(res => {
-				expect(res.text).toBe("Login Failed");
-			});
-	})
+	// it('login username failed', async () => {
+	// 	return request
+	// 		.post('/login')
+	// 		.send({username: 'ynot', password: "123abc" })
+	// 		.expect('Content-Type', /json/)
+	// 		.expect(401)
+	// 		.then(res => {
+	// 			expect(res.body).toEqual({error : "Login Failed"});
+	// 		});
+	// });
+
+	// it('login password failed', async () => {
+	// 	return request
+	// 		.post('/login')
+	// 		.send({username: 'tony', password: "abc123" })
+	// 		.expect('Content-Type', /json/)
+	// 		.expect(401)
+	// 		.then(res => {
+	// 			expect(res.body).toEqual({error : "Login Failed"});
+	// 		});
+	// });
 
 	it('register', async () => {
 		//TODO when register is successful, it should return success message
