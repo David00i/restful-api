@@ -14,32 +14,31 @@ describe("User Account Management", () => {
 	afterAll(async () => {
 		await client.close();
 	})
-
 	test("New user registration", async () => {
-		const res = await User.register("username", "password", "123456")
-		expect().toBe()
+		const res = await User.register("tony", "123abc","tony@gmail.com");
+		expect(res).toBe("user created");
 	})
 
 	test("Duplicate username", async () => {
-		const res = await User.register("username", "1234")
-		expect().toBe()
+		const res = await User.register("tony", "123abc","tony@gmail.com");
+		expect(res).toBe("duplicate user name")
 	})
 
 	test("User login invalid username", async () => {
-		const res = await User.login("test", "test")
-		expect(res).toBe("??")
+		const res = await User.login("useless name", "123abc")
+		expect(res).toBe("invalid username")
 	})
 
 	test("User login invalid password", async () => {
-		const res = await User.login("test", "test")
-		expect(res).toBe("??") 
+		const res = await User.login("tony", "wrong password")
+		expect(res).toBe("invalid password")
 	})
 
 	test("User login successfully", async () => {
-		const res = await User.login("test", "test")
-		expect(res).toBe()
+		const res = await User.login("tony", "123abc")
+		expect(res).toBe(true)
 	})
 
-	test('should run', () => {
-	});
+	// test('should run', () => {
+	// });
 });
